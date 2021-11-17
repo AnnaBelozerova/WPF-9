@@ -43,23 +43,7 @@ namespace WPF_3
             Application.Current.Resources.Clear();
             Application.Current.Resources.MergedDictionaries.Add(resource);
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string fontName = (sender as ComboBox).SelectedValue.ToString();
-            if (textBox != null)
-            {
-                textBox.FontFamily = new FontFamily(fontName);
-            }
-        }
-
-        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            double fontSize = Convert.ToDouble((sender as ComboBox).SelectedValue);
-            if (textBox != null)
-            {
-                textBox.FontSize = fontSize;
-            }    
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -98,23 +82,7 @@ namespace WPF_3
             }            
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            if (textBox != null)
-            {
-                textBox.Foreground = Brushes.Black;
-            }            
-        }
-
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-            if (textBox != null)
-            {
-                textBox.Foreground = Brushes.Red;
-            }
-        }
-          
-          
+                   
 
         private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
@@ -140,5 +108,7 @@ namespace WPF_3
         {
             Application.Current.Shutdown();
         }
+
+        
     }
 }

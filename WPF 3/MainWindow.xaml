@@ -11,6 +11,7 @@
         <CommandBinding Command="Save" Executed="SaveExecuted"/>
         <CommandBinding Command="Close" Executed="CloseExecuted"/>
     </Window.CommandBindings>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -37,8 +38,8 @@
         </Menu>
         <ToolBarTray Grid.Row="1" Style="{DynamicResource ToolBarTrayStyle}">
             <ToolBar Margin="5" Padding="5" >
-                <ComboBox Width="200" Margin="5" Padding="5" SelectedIndex="0"  ItemsSource="{StaticResource Font}" SelectionChanged="ComboBox_SelectionChanged" />
-                <ComboBox Width="50" Margin="5" Padding="5" SelectedIndex="2"  ItemsSource="{StaticResource Size}" SelectionChanged="ComboBox_SelectionChanged_1" />
+                <ComboBox x:Name="ComboBoxFont" Width="200" Margin="5" Padding="5" SelectedIndex="0"  ItemsSource="{Binding Source={StaticResource Font}}"  />
+                <ComboBox x:Name="ComboBoxSize" Width="50" Margin="5" Padding="5" SelectedIndex="2"  ItemsSource="{Binding Source={StaticResource Size}}"  />
             </ToolBar>
             <ToolBar Margin="5" Padding="4" >
                 <Button Width="35" Click="Button_Click">
@@ -54,14 +55,15 @@
                 </Button>
             </ToolBar>
             <ToolBar Margin="5" Padding="5" >
-                <StackPanel VerticalAlignment="Center">
-                    <RadioButton Content="Черный" IsChecked="True" Checked="RadioButton_Checked"/>
-                    <RadioButton Content="Красный" Checked="RadioButton_Checked_1"/>
+                <StackPanel VerticalAlignment="Center" >
+                    <RadioButton x:Name="radioButtonBlack"  Content="Черный" Tag="Black"/>
+                    <RadioButton  x:Name="radioButtonRed"  Content="Красный"  IsChecked="true" />
                 </StackPanel>
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="textBox" Grid.Row="2" Margin="5" Padding="5" FontFamily="Arial"  FontSize="16" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Style="{DynamicResource TextBlockStyle}" >
-            
+        <TextBox x:Name="textBox" Grid.Row="2" Margin="5" Padding="5"  FontFamily="{Binding ElementName=ComboBoxFont, Path=SelectedValue, Mode=OneWay}"  FontSize="{Binding ElementName=ComboBoxSize, Path=SelectedValue, Mode=OneWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Style="{DynamicResource TextBlockStyle}" >
+         
+          
         </TextBox>
     </Grid>
 </Window>
